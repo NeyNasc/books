@@ -16,26 +16,19 @@ def livro_para_newsletter(livro)
 	end
 end
 
-agile = Livro.new("Agile Web Development with Rails", 70, 2011, true)
-livro_ruby = Livro.new("Programming Ruby 1.9", 60, 2010, true)
 algoritmos = Livro.new("Algoritmos", 100, 1998, true)
-#livro_para_newsletter algoritmos
-
-livros = [agile, livro_ruby, algoritmos]
-
-#imprime_nota_fiscal livros
+arquitetura = Livro.new("Introdução À Arquitetura e Design de Software", 70, 2011, true)
+programmer = Livro.new("The Pragmatic Programmer", 100, 1999, true)
+ruby = Livro.new("Programming Ruby", 100, 2004, true)
 
 estoque = Estoque.new
+estoque <<  algoritmos
+puts estoque.livros.maximo_necessario
+estoque <<  arquitetura
+puts estoque.livros.maximo_necessario
 
-estoque.livros<<agile <<algoritmos<<livro_ruby
-estoque.livros << Livro.new("The Pragmatic Programmer", 100, 1999, true)
-estoque.livros << Livro.new("Programming Ruby", 100, 2004, true)
-#estoque.livros << nil
+estoque <<  programmer << ruby
+puts estoque.livros.maximo_necessario
 
-
-estoque.exporta_csv
-puts estoque.total
-baratos = estoque.mais_barato_que 80
-baratos.each do |livro|
-	puts livro.titulo
-end
+estoque.remove algoritmos
+puts estoque.livros.maximo_necessario

@@ -1,5 +1,20 @@
+module Contador
+  def << (livro)
+    push (livro)
+    if @maximo_necessario.nil? || @maximo_necessario < size
+      @maximo_necessario = size
+    end
+    self
+  end
+
+  def maximo_necessario
+    @maximo_necessario  
+  end
+end
+
 class Estoque
-	attr_accessor :livros
+	attr_reader :livros
+	@livros.extend Contador
 
 	def initialize
 		@livros = []
@@ -21,7 +36,16 @@ class Estoque
 		@livros.size		
 	end
 
-	def adiciona(livro)
-		@livros<<livro if livro		
-	end
+	def << (livro)
+    @livros << livro if livro
+    self
+	  end
+
+	  def remove(livro)
+	    @livros.delete livro
+	  end
+
+	  def maximo_necessario
+	    @livros.maximo_necessario
+	  end
 end
