@@ -1,4 +1,6 @@
 require_relative "livro"
+require_relative "revista"
+require_relative "ebook"
 require_relative "estoque"
 
 def imprime_nota_fiscal(livros)
@@ -15,13 +17,13 @@ def livro_para_newsletter(livro)
 	end
 end
 
-algoritmos = Livro.new("Algoritmos", 100, 1998, true, "", "livro")
-arquitetura = Livro.new("Introdução À Arquitetura e Design de Software", 70, 2011, true, "", "livro")
-programmer = Livro.new("The Pragmatic Programmer", 100, 1999, true, "", "livro")
-ruby = Livro.new("Introdução À Arquitetura e Design de Software", 10, 2012, true, "", "ebook")
-online_arquiterua = Livro.new("Programming Ruby", 100, 2004, true, "", "livro")
+algoritmos = Livro.new("Algoritmos", 100, 1998, true, "", true)
+arquitetura = Livro.new("Introdução À Arquitetura e Design de Software", 70, 2011, true, "", false)
+programmer = Livro.new("The Pragmatic Programmer", 100, 1999, true, "", false)
+online_arquiterua = EBook.new("Introdução À Arquitetura e Design de Software", 10, 2012, "")
+ruby = Livro.new("Programming Ruby", 100, 2004, true, "", false)
 
-revistona = Livro.new("Programando Ruby", 10, 2012, true, "Revistas", "revista")
+revistona = Revista.new("Programando Ruby", 10, 2012, true, "Revistas", 3)
 
 estoque = Estoque.new
 estoque <<revistona <<online_arquiterua <<revistona <<revistona <<  algoritmos <<algoritmos <<ruby <<programmer <<arquitetura <<ruby <<ruby
@@ -29,6 +31,7 @@ estoque.vende algoritmos
 estoque.vende algoritmos
 estoque.vende ruby
 estoque.vende revistona
+estoque.vende online_arquiterua
 
 puts estoque.livro_que_mais_vendeu_por_titulo.titulo
 puts estoque.revista_que_mais_vendeu_por_titulo.titulo
