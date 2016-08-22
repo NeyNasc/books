@@ -1,7 +1,6 @@
 require_relative "livro"
 require_relative "estoque"
 
-
 def imprime_nota_fiscal(livros)
   livros.each do |livro|
     puts "Titulo: #{livro.titulo} - R$#{livro.preco}"
@@ -23,12 +22,12 @@ ruby = Livro.new("Programming Ruby", 100, 2004, true)
 
 estoque = Estoque.new
 estoque <<  algoritmos
-puts estoque.livros.maximo_necessario
+puts estoque.maximo_necessario
 estoque <<  arquitetura
-puts estoque.livros.maximo_necessario
+puts estoque.maximo_necessario
 
 estoque <<  programmer << ruby
-puts estoque.livros.maximo_necessario
+puts estoque.maximo_necessario
 
 estoque.remove algoritmos
-puts estoque.livros.maximo_necessario
+puts estoque.maximo_necessario

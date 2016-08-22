@@ -1,23 +1,12 @@
-module Contador
-  def << (livro)
-    push (livro)
-    if @maximo_necessario.nil? || @maximo_necessario < size
-      @maximo_necessario = size
-    end
-    self
-  end
-
-  def maximo_necessario
-    @maximo_necessario  
-  end
-end
+require_relative "contador"
 
 class Estoque
 	attr_reader :livros
-	@livros.extend Contador
-
+	
 	def initialize
 		@livros = []
+		@vendas = []
+		@livros.extend Contador
 	end
 
 	def exporta_csv
@@ -41,8 +30,9 @@ class Estoque
     self
 	  end
 
-	  def remove(livro)
+	  def vende(livro)
 	    @livros.delete livro
+	    @vendas << livro
 	  end
 
 	  def maximo_necessario
