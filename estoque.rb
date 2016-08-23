@@ -2,16 +2,16 @@ require_relative "contador"
 
 class Estoque
 	attr_reader :livros
-	
+
 	def initialize
 		@livros = []
 		@vendas = []
 		@livros.extend Contador
 	end
 
-	
 
-	
+
+
 	def method_missing (name)
 		matcher = name.to_s.match "(.+)_que_mais_vendeu_por_(.+)"
 		if matcher
@@ -46,21 +46,21 @@ class Estoque
 	end
 
 	def << (livro)
-    @livros << livro if livro
-    self
-	  end
+		@livros << livro if livro
+		self
+	end
 
-	  def vende(livro)
-	    @livros.delete livro
-	    @vendas << livro
-	  end
+	def vende(livro)
+		@livros.delete livro
+		@vendas << livro
+	end
 
-	  def maximo_necessario
-	    @livros.maximo_necessario
-	  end
+	def maximo_necessario
+		@livros.maximo_necessario
+	end
 
-	  private
-	  def quantidade_de_vendas_por(produto, &campo)
+private
+	def quantidade_de_vendas_por(produto, &campo)
 		@vendas.count {|venda| campo.call(venda) == campo.call(produto)}
 	end
 
